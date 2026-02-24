@@ -1,0 +1,99 @@
+---
+title: "Get Transactions"
+api: "GET https://api.havn.finance/v1/cards/{cardId}/transactions"
+description: "Retrieve a paginated history of fiat authorizations on a specific virtual card."
+---
+
+### Authorization
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer <token>`
+</ParamField>
+
+### Path Parameters
+
+<ParamField path="cardId" type="string" required>
+  The unique identifier of the virtual card (returned during the `POST /v1/cards` provisioning call).
+  Format: `crd_<16 chars>`
+</ParamField>
+
+### Query Parameters
+
+<ParamField query="limit" type="number" default="20">
+  Maximum number of transactions to return per page. Max: 100.
+</ParamField>
+
+<ParamField query="startingAfter" type="string">
+  A cursor for use in pagination. `startingAfter` is an object ID that defines your place in the list.
+</ParamField>
+
+### Response
+
+<ResponseField name="data" type="array">
+  List of transaction objects.
+</ResponseField>
+
+<ResponseField name="hasMore" type="boolean">
+  Whether there are more transactions available beyond this page.
+</ResponseField>
+
+### Transaction Object Attributes
+
+<ResponseField name="id" type="string">
+  Unique transaction identifier. Format: `txn_<12 chars>`
+</ResponseField>
+
+<ResponseField name="amount" type="number">
+  The USD fiat amount authorized/settled.
+</ResponseField>
+
+<ResponseField name="merchant" type="string">
+  The merchant descriptor from the Visa® or Mastercard® network.
+</ResponseField>
+
+<ResponseField name="status" type="string">
+  Status of the transaction. Values: `pending`, `settled`, `declined`, `refunded`
+</ResponseField>
+
+<ResponseField name="createdAt" type="string">
+  ISO 8601 timestamp of the authorization.
+</ResponseField>
+
+<RequestExample>
+```bash cURL
+curl --request GET \
+  --url 'https://api.havn.finance/v1/cards/crd_8f7b2c9a1e3d4f5b/transactions?limit=2' \
+  --header 'Authorization: Bearer havn_live_abc123def456'
+```
+</RequestExample>
+
+<ResponseExample>
+```json 200 - Success
+{
+  "data": [
+    {
+      "id": "txn_84jf902nf4kd",
+      "amount": 14.99,
+      "merchant": "NETFLIX.COM",
+      "status": "settled",
+      "createdAt": "2026-02-15T08:12:44Z"
+    },
+    {
+      "id": "txn_1nfb9g48dbk7",
+      "amount": 298.50,
+      "merchant": "APPLE STORE R102",
+      "status": "pending",
+      "createdAt": "2026-02-18T14:30:11Z"
+    }
+  ],
+  "hasMore": true
+}
+```
+
+```json 403 - Forbidden
+{
+  "error": "insufficient_permissions",
+  "message": "This API key does not have the 'read:cards' scope."
+}
+```
+</ResponseExample>

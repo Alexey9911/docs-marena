@@ -1,0 +1,59 @@
+---
+title: "Features & Architecture"
+description: "Technical overview of the Havn Finance non-custodial gateway and routing engine."
+icon: "microchip"
+---
+
+# Technical Architecture
+
+The Havn Finance platform is architected to seamlessly bridge decentralized liquidity pools with fiat settlement networks globally. By minimizing intermediary steps, we achieve sub-second execution for stablecoins and major L1 assets.
+
+## The Routing Engine
+
+Our custom smart contract routing engine, the **Havn Gateway**, is deployed across EVM-compatible networks and Solana.
+
+### Transaction Lifecycle
+
+<Steps>
+  <Step title="Quote Generation">
+    Upon receiving a top-up request, our frontend queries aggregated off-chain oracle prices (Chainlink, Pyth) against real-time DEX liquidity (Jupiter, Uniswap) to secure a fixed conversion rate valid for 30 seconds.
+  </Step>
+  <Step title="Asset Locking">
+    The user signs a transaction sending the exact crypto amount to a single-use deterministic smart contract vault.
+  </Step>
+  <Step title="JIT Conversion">
+    Sub-second Just-In-Time (JIT) execution converts the volatile asset (if applicable) against stablecoin deep liquidity.
+  </Step>
+  <Step title="Fiat Ledger Settlement">
+    The stablecoin is settled via institutional API with our banking partner, immediately reflecting the fiat balance on the virtual card ledger via webhooks.
+  </Step>
+</Steps>
+
+## Deep Liquidity Integration
+
+We utilize advanced Smart Order Routing (SOR) algorithms to minimize slippage, particularly for high-tier card funding operations.
+
+### Cross-Chain Capabilities
+
+| Network | Principal Aggregator | Average Finality |
+| :--- | :--- | :--- |
+| **Solana** | Jupiter (JUP) | < 400ms |
+| **Ethereum** | Uniswap / 1inch | ~ 12s |
+| **Polygon (PoS)** | QuickSwap / 1inch | ~ 2s |
+| **Base** | Aerodrome | ~ 2s |
+
+## Security & Compliance Model
+
+Security is paramount in financial bridging infrastructure. Havn Finance inherently limits total value locked (TVL) risks by operating purely as a gateway rather than an AMM or lending protocol.
+
+### Smart Contract Protections
+
+* **No Proxy Upgradability on Vaults:** Funding vaults are immutable, ensuring logic cannot be maliciously altered mid-transaction.
+* **Slippage Tolerance Checks:** All on-chain conversions fail/revert if the execution price deviates outside the strictly defined SLA threshold (0.5% max).
+* **Timelocked Funds:** If fiat settlement via the banking partner API times out or fails, smart contracts have a built-in 24-hour timelock, after which funds become directly withdrawable by the originating wallet.
+
+### Non-Custodial Assurances
+
+Because we do not use multi-sig wallets for holding user deposits, there is zero platform counterparty risk regarding the crypto assets. **Your keys, your crypto.** Funds exist either strictly under your self-custody or are instantly materialized as fiat purchasing power on the authorized banking ledger.
+
+> "By abstracting the complexity of cross-chain bridging and fiat off-ramps, Havn Finance delivers the UX of a traditional fintech app with the sovereign properties of Web3."

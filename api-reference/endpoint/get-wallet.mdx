@@ -1,0 +1,66 @@
+---
+title: "Get Wallet Status"
+api: "GET https://api.havn.finance/v1/wallets/{address}"
+description: "Retrieve linking status, tier limits, and accepted chains for a specific wallet."
+---
+
+### Authorization
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer <token>`
+</ParamField>
+
+### Path Parameters
+
+<ParamField path="address" type="string" required>
+  The public address of the Web3 wallet.
+</ParamField>
+
+### Response
+
+<ResponseField name="address" type="string">
+  The queried wallet address.
+</ResponseField>
+
+<ResponseField name="tier" type="string">
+  The assigned Havn Ecosystem Tier based on historical funding volume. Values: `Standard`, `High`, `Max`
+</ResponseField>
+
+<ResponseField name="lifetimeVolumeUsd" type="number">
+  The total USD value this wallet has successfully converted into virtual cards.
+</ResponseField>
+
+<ResponseField name="remainingLimit" type="number">
+  The remaining funding limit (in USD) for the current 24-hour window, based on the wallet's tier.
+</ResponseField>
+
+<ResponseField name="isActive" type="boolean">
+  Whether the wallet is currently eligible to provision new cards.
+</ResponseField>
+
+<RequestExample>
+```bash cURL
+curl --request GET \
+  --url https://api.havn.finance/v1/wallets/7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU \
+  --header 'Authorization: Bearer havn_live_abc123def456'
+```
+</RequestExample>
+
+<ResponseExample>
+```json 200 - Success
+{
+  "address": "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU",
+  "tier": "High",
+  "lifetimeVolumeUsd": 4250.75,
+  "remainingLimit": 1500.00,
+  "isActive": true
+}
+```
+
+```json 404 - Not Found
+{
+  "error": "wallet_not_found",
+  "message": "No historical transactions found for this wallet address."
+}
+```
+</ResponseExample>

@@ -1,122 +1,109 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
-  "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+  "name": "Havn Finance",
+  "logo": {
+    "light": "/images/logo_black.svg",
+    "dark": "/images/logo_white.svg",
+    "href": "https://havn.finance"
   },
   "favicon": "/favicon.svg",
+  "colors": {
+    "primary": "#0055FF",
+    "light": "#3377FF",
+    "dark": "#002266"
+  },
+  "appearance": {
+    "default": "dark"
+  },
   "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Website",
+          "icon": "laptop",
+          "href": "https://havn.finance"
+        },
+        {
+          "anchor": "Twitter",
+          "icon": "x-twitter",
+          "href": "https://x.com/havnfi"
+        }
+      ]
+    },
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Documentation",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "HAVN VISION",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "index"
             ]
           },
           {
-            "group": "Customization",
+            "group": "HAVN PROTOCOL",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "protocol/what-is-havn",
+              "protocol/how-it-works",
+              "protocol/features"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "CARD ECOSYSTEM",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "cards/types",
+              "cards/tiers",
+              "cards/integration"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "ABOUT US",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "about/privacy"
             ]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "API Reference",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Introduction",
             "pages": [
               "api-reference/introduction"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Card Operations",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "api-reference/endpoint/create-card",
+              "api-reference/endpoint/list-cards",
+              "api-reference/endpoint/transactions",
+              "api-reference/endpoint/freeze-card"
+            ]
+          },
+          {
+            "group": "Wallet Operations",
+            "pages": [
+              "api-reference/endpoint/get-wallet"
             ]
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    ]
   },
   "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
-      }
-    ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Get Your Card",
+      "href": "https://havn.finance"
     }
-  },
-  "contextual": {
-    "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/havnfi",
+      "website": "https://havn.finance"
     }
   }
 }

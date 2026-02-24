@@ -1,0 +1,73 @@
+---
+title: "Freeze Card"
+api: "POST https://api.havn.finance/v1/cards/{cardId}/freeze"
+description: "Temporarily suspend authorizations on a specific virtual card."
+---
+
+### Authorization
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer <token>`
+</ParamField>
+
+### Path Parameters
+
+<ParamField path="cardId" type="string" required>
+  The unique identifier of the virtual card to freeze.
+  Format: `crd_<16 chars>`
+</ParamField>
+
+### Body Parameters
+
+<ParamField body="reason" type="string">
+  Optional context for why the card is being frozen.
+  
+  **Options:** `lost_device`, `suspicious_activity`, `temporary_pause`
+</ParamField>
+
+### Responsibilities
+
+Freezing a card immediately declines any new fiat authorizations. This action is instantaneous and propagates to the Visa®/Mastercard® networks within milliseconds. You can unfreeze the card later via the `POST /v1/cards/{cardId}/unfreeze` endpoint.
+
+### Response
+
+<ResponseField name="id" type="string">
+  Unique card identifier.
+</ResponseField>
+
+<ResponseField name="status" type="string">
+  The new updated card status (will be `frozen`).
+</ResponseField>
+
+<ResponseField name="frozenAt" type="string">
+  ISO 8601 timestamp indicating exactly when the freeze command was executed.
+</ResponseField>
+
+<RequestExample>
+```bash cURL
+curl --request POST \
+  --url https://api.havn.finance/v1/cards/crd_8f7b2c9a1e3d4f5b/freeze \
+  --header 'Authorization: Bearer havn_live_abc123def456' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "reason": "suspicious_activity"
+  }'
+```
+</RequestExample>
+
+<ResponseExample>
+```json 200 - Success
+{
+  "id": "crd_8f7b2c9a1e3d4f5b",
+  "status": "frozen",
+  "frozenAt": "2026-02-24T06:15:30Z"
+}
+```
+
+```json 400 - Bad Request
+{
+  "error": "state_error",
+  "message": "Card crd_8f7b2c9a1e3d4f5b is already frozen."
+}
+```
+</ResponseExample>

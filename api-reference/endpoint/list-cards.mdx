@@ -1,0 +1,104 @@
+---
+title: "List Cards"
+api: "GET https://api.havn.finance/v1/cards"
+description: "Retrieve a paginated list of all virtual cards associated with the authenticated wallet."
+---
+
+### Authorization
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer <token>`
+</ParamField>
+
+### Query Parameters
+
+<ParamField query="status" type="string">
+  Filter cards by their current lifecycle status.
+  
+  **Options:** `active`, `frozen`, `terminated`, `awaiting_deposit`
+</ParamField>
+
+<ParamField query="limit" type="number" default="10">
+  Maximum number of cards to return per page. Max: 50.
+</ParamField>
+
+<ParamField query="startingAfter" type="string">
+  A cursor for use in pagination. `startingAfter` is a card ID that defines your place in the list.
+</ParamField>
+
+### Response
+
+<ResponseField name="data" type="array">
+  List of card objects.
+</ResponseField>
+
+<ResponseField name="hasMore" type="boolean">
+  Whether there are more cards available beyond this page.
+</ResponseField>
+
+### Card Object Attributes
+
+<ResponseField name="id" type="string">
+  Unique card identifier. Format: `crd_<16 chars>`
+</ResponseField>
+
+<ResponseField name="network" type="string">
+  The card network credential. Values: `visa`, `mastercard`
+</ResponseField>
+
+<ResponseField name="last4" type="string">
+  The last 4 digits of the PAN.
+</ResponseField>
+
+<ResponseField name="balance" type="number">
+  The current available USD balance on the card.
+</ResponseField>
+
+<ResponseField name="status" type="string">
+  Current card status. Values: `active`, `frozen`, `terminated`, `awaiting_deposit`
+</ResponseField>
+
+<ResponseField name="createdAt" type="string">
+  ISO 8601 timestamp indicating when the card was provisioned.
+</ResponseField>
+
+<RequestExample>
+```bash cURL
+curl --request GET \
+  --url 'https://api.havn.finance/v1/cards?limit=2&status=active' \
+  --header 'Authorization: Bearer havn_live_abc123def456'
+```
+</RequestExample>
+
+<ResponseExample>
+```json 200 - Success
+{
+  "data": [
+    {
+      "id": "crd_8f7b2c9a1e3d4f5b",
+      "network": "visa",
+      "last4": "4242",
+      "balance": 1845.50,
+      "status": "active",
+      "createdAt": "2026-02-10T14:30:00Z"
+    },
+    {
+      "id": "crd_9a8c7d6b5c4f3e2a",
+      "network": "mastercard",
+      "last4": "8899",
+      "balance": 120.00,
+      "status": "active",
+      "createdAt": "2026-02-18T09:15:22Z"
+    }
+  ],
+  "hasMore": false
+}
+```
+
+```json 401 - Unauthorized
+{
+  "error": "invalid_token",
+  "message": "The provided authentication token is invalid or expired."
+}
+```
+</ResponseExample>

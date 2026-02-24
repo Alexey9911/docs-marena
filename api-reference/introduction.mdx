@@ -1,33 +1,51 @@
 ---
-title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+title: "Authentication"
+description: "Learn how to authenticate with the Havn Finance API."
 ---
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
+## API Keys
 
-## Welcome
+All interactions with the Havn Finance API require authentication via a Bearer token provided in the Authorization header. Our infrastructure uses high-entropy, cryptographically secure keys tied directly to your registered Web3 wallet address.
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
-
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
-
-## Authentication
-
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
-
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+```bash
+Authorization: Bearer havn_live_abc123def456
 ```
+
+### Obtaining API Keys
+
+1. Navigate to the **Havn Dashboard**.
+2. Connect your funding wallet (e.g., Phantom or MetaMask).
+3. Navigate to **Developer Settings > API Keys**.
+4. Generate a new key with appropriate permissions (Read-Only or Full Access).
+5. Store the key securely—it will only be shown once.
+
+<Warning>
+  Never expose your API key in client-side code, public repositories, or frontend applications. The API is designed for server-to-server communication to protect your funding source.
+</Warning>
+
+### Key Permissions (Scopes)
+
+API access requires explicit scope grants to limit the blast radius if a key is compromised.
+
+| Scope | Description |
+|-------|-------------|
+| `read:wallet` | View linked wallet balances and supported chains. |
+| `read:cards` | View issued card details (excluding full PAN) and transaction history. |
+| `write:cards` | Request the provisioning of a new virtual card. |
+
+### Rate Limits
+
+To protect the liquidity routing engine and banking APIs, rate limits are strictly enforced at the edge.
+
+| Tier | Requests/sec | Requests/day |
+|------|-------------|--------------|
+| Developer | 5 | 10,000 |
+| Production | 50 | 500,000 |
+| Enterprise | Custom | Unlimited |
+
+<Note>
+  Rate limit headers are included in every API response:
+  - `X-RateLimit-Limit`: Your current tier's request limit.
+  - `X-RateLimit-Remaining`: Number of requests left in the current window.
+  - `X-RateLimit-Reset`: Unix timestamp when the limit resets.
+</Note>
