@@ -1,6 +1,6 @@
 ---
 title: "Provision Card"
-api: "POST https://api.havn.finance/v1/cards"
+api: "POST https://api.havnfinance.cc/v1/cards"
 description: "Provision a new virtual Visa® or Mastercard® using decentralized assets."
 ---
 
@@ -59,7 +59,7 @@ description: "Provision a new virtual Visa® or Mastercard® using decentralized
 <RequestExample>
 ```bash cURL
 curl --request POST \
-  --url https://api.havn.finance/v1/cards \
+  --url https://api.havnfinance.cc/v1/cards \
   --header 'Authorization: Bearer havn_live_abc123def456' \
   --header 'Content-Type: application/json' \
   --data '{
@@ -71,7 +71,7 @@ curl --request POST \
 ```
 
 ```javascript Node.js
-const response = await fetch('https://api.havn.finance/v1/cards', {
+const response = await fetch('https://api.havnfinance.cc/v1/cards', {
   method: 'POST',
   headers: {
     'Authorization': `Bearer ${process.env.HAVN_API_KEY}`,

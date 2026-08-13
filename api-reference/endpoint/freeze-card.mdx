@@ -1,6 +1,6 @@
 ---
 title: "Freeze Card"
-api: "POST https://api.havn.finance/v1/cards/{cardId}/freeze"
+api: "POST https://api.havnfinance.cc/v1/cards/{cardId}/freeze"
 description: "Temporarily suspend authorizations on a specific virtual card."
 ---
 
@@ -46,7 +46,7 @@ Freezing a card immediately declines any new fiat authorizations. This action is
 <RequestExample>
 ```bash cURL
 curl --request POST \
-  --url https://api.havn.finance/v1/cards/crd_8f7b2c9a1e3d4f5b/freeze \
+  --url https://api.havnfinance.cc/v1/cards/crd_8f7b2c9a1e3d4f5b/freeze \
   --header 'Authorization: Bearer havn_live_abc123def456' \
   --header 'Content-Type: application/json' \
   --data '{

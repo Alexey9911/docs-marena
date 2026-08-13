@@ -5,13 +5,13 @@
   "logo": {
     "light": "/images/logo_black.svg",
     "dark": "/images/logo_white.svg",
-    "href": "https://havn.finance"
+    "href": "https://havnfinance.cc"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.png",
   "colors": {
-    "primary": "#0055FF",
-    "light": "#3377FF",
-    "dark": "#002266"
+    "primary": "#001DED",
+    "light": "#4D66FF",
+    "dark": "#000A54"
   },
   "appearance": {
     "default": "dark"
@@ -22,12 +22,17 @@
         {
           "anchor": "Website",
           "icon": "laptop",
-          "href": "https://havn.finance"
+          "href": "https://havnfinance.cc"
+        },
+        {
+          "anchor": "Get Your Card",
+          "icon": "credit-card",
+          "href": "https://havnfinance.cc/login"
         },
         {
           "anchor": "Twitter",
           "icon": "x-twitter",
-          "href": "https://x.com/havnfi"
+          "href": "https://x.com/HavnFinance"
         }
       ]
     },
@@ -97,13 +102,13 @@
     "primary": {
       "type": "button",
       "label": "Get Your Card",
-      "href": "https://havn.finance"
+      "href": "https://havnfinance.cc/login"
     }
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/havnfi",
-      "website": "https://havn.finance"
+      "x": "https://x.com/HavnFinance",
+      "website": "https://havnfinance.cc"
     }
   }
 }
