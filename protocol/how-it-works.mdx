@@ -1,29 +1,50 @@
 ---
 title: "How it Works"
-description: "The 3-step provisioning lifecycle for Havn virtual cards."
+description: "From a QR code to a card number."
 icon: "gears"
 ---
 
-# Provisioning Process
-
-Our system is designed for speed and privacy. The provisioning lifecycle happens in three seamless steps:
+# Buying a card
 
 <Steps>
-  <Step title="Select Asset & Network">
-    Choose your preferred cryptocurrency (SOL, ETH, BTC, or USDC) across supported blockchains:
-    * **Solana**
-    * **Ethereum**
-    * **Polygon**
-    * **Base / Optimism**
+  <Step title="Sign in">
+    Sign in with X, Google or an email address. Your cards are tied to that
+    account, which is how we know which ones are yours.
   </Step>
-  <Step title="Smart Contract Routing">
-    The protocol generates a unique, single-use deposit address. Upon confirmation, institutional-grade liquidity mappers pick up the transaction.
+  <Step title="Choose an amount">
+    Between $5 and $1,000. The card is loaded with exactly that amount.
   </Step>
-  <Step title="Instant Issuance">
-    The deposit is converted with **0% hidden spread**. Your Visa® or Mastercard® credential is provisioned instantly to your secure inbox.
+  <Step title="Pay from your wallet">
+    A QR code appears with the exact amount. Scan it with any Solana wallet, or
+    copy the address and send manually. Pay in **SOL** or **USDC**.
+  </Step>
+  <Step title="Wait about a minute">
+    The page follows your payment on its own: it confirms the transaction,
+    converts it if you paid in SOL, and orders the card. You do not need to
+    refresh.
+  </Step>
+  <Step title="Spend it">
+    Your card number, expiry date and security code appear on screen and stay
+    available in your account.
   </Step>
 </Steps>
 
-## Real-Time Settlement
+<img src="/images/havn-pos-terminal.webp" alt="Paying with a Havn card" className="my-8 rounded-xl max-w-[420px] mx-auto block w-full" />
 
-Crypto is converted algorithmically within milliseconds of swiping, guaranteeing you get exactly the market rate. Say goodbye to pending states and hidden fees.
+## Paying in SOL vs USDC
+
+Both work. The difference is what happens to the price.
+
+**USDC** is a dollar, so the amount you send is the amount you get. What the payment screen shows is what you pay.
+
+**SOL** moves. We quote the SOL amount when you create the order and include a small buffer, because the price can drift between the moment you see the QR code and the moment your transaction lands. If SOL moves in your favour, the surplus stays on your order.
+
+## If something goes wrong
+
+Orders expire if no payment arrives in time. If you paid and the order did not complete, the payment is still recorded against your account — contact us with the order and we will resolve it. Do not send a second payment.
+
+<Note>
+  Your card details are never stored on your device. They are fetched fresh from
+  the issuer each time you open the card, which is why you have to be signed in
+  to see them.
+</Note>

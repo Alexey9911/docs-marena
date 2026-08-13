@@ -1,24 +1,38 @@
 ---
 title: "What is Havn?"
-description: "Overview of the non-custodial gateway for virtual card provisioning."
+description: "A way to spend Solana at online merchants, without a bank."
 icon: "shield-halved"
 ---
 
-# The $Havn Protocol
+# What Havn is
 
-Havn Finance operates as a sovereign, non-custodial gateway. We never hold your private keys or maintain long-term custody of your crypto balances.
+Havn issues virtual prepaid cards that you pay for with crypto on Solana.
 
-## Non-Custodial Architecture
+That is the whole product. You send SOL or USDC, and you get a card number you can type into a checkout. There is no bank application, no credit check, and no monthly account.
 
-Our infrastructure utilizes smart-contract routing. When you initiate a funding transaction:
-1. Liquidity is algorithmically converted.
-2. Conversion happens at the exact moment of authorization.
-3. A virtual credential is issued directly to your secure environment.
+<img src="/images/havn-coin-basket.webp" alt="Havn" className="my-8 rounded-xl max-w-[420px] mx-auto block w-full" />
 
-### Core Philosophy
+## What it is not
 
-The platform is designed to be **Zero KYC** and **Total Privacy**. No traditional identity verification or intrusive onboarding is required to provision your virtual card.
+Being clear about this saves everyone time:
 
-<Note>
-  You remain in absolute control of your funds until the exact moment of spending through our secure smart contract routing.
-</Note>
+- **It is not a bank account.** You cannot receive a salary into it or hold a balance with us.
+- **It is not a credit card.** Each card is loaded once, with the amount you paid.
+- **It is not reloadable.** When the balance is spent, the card is finished. Order the amount you plan to spend.
+
+## How your money moves
+
+You pay from your own wallet. Havn receives that payment, converts it if needed, and buys the card on your behalf. The card's balance is then yours to spend.
+
+<Warning>
+  Between paying and receiving your card, your funds are held by Havn. This is a
+  custodial step, not a smart contract, and it is how the card gets funded. If
+  something goes wrong mid-order, contact us — do not assume funds return
+  automatically.
+</Warning>
+
+## Solana only
+
+Havn accepts **SOL** and **USDC** on **Solana**. Nothing else.
+
+Sending any other token, or the right token on a different network, means the funds do not arrive and cannot be recovered. The payment screen shows the exact address and amount for this reason.

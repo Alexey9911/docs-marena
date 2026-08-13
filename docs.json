@@ -14,7 +14,7 @@
     "dark": "#000A54"
   },
   "appearance": {
-    "default": "dark"
+    "default": "light"
   },
   "navigation": {
     "global": {
@@ -41,13 +41,13 @@
         "tab": "Documentation",
         "groups": [
           {
-            "group": "HAVN VISION",
+            "group": "START HERE",
             "pages": [
               "index"
             ]
           },
           {
-            "group": "HAVN PROTOCOL",
+            "group": "THE BASICS",
             "pages": [
               "protocol/what-is-havn",
               "protocol/how-it-works",
@@ -55,7 +55,7 @@
             ]
           },
           {
-            "group": "CARD ECOSYSTEM",
+            "group": "YOUR CARD",
             "pages": [
               "cards/types",
               "cards/tiers",
@@ -66,32 +66,6 @@
             "group": "ABOUT US",
             "pages": [
               "about/privacy"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API Reference",
-        "groups": [
-          {
-            "group": "Introduction",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Card Operations",
-            "pages": [
-              "api-reference/endpoint/create-card",
-              "api-reference/endpoint/list-cards",
-              "api-reference/endpoint/transactions",
-              "api-reference/endpoint/freeze-card"
-            ]
-          },
-          {
-            "group": "Wallet Operations",
-            "pages": [
-              "api-reference/endpoint/get-wallet"
             ]
           }
         ]
